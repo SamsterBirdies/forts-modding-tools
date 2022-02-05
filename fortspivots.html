@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<style>
+	p {
+		color: white;
+	}
+	label {
+		color:white;
+	}
+	.button {
+		padding: 4px 8px;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		font-size: 16px;
+		margin: 4px 2px;
+		cursor: pointer;
+		background-color: #454545;
+		color: white;
+		border: 3px solid green;
+	}
+
+		.button:hover {
+			background-color: #606060;
+			color: white;
+			border: 3px solid lightgreen;
+		}
+
+		.button:active {
+			background-color: lightgreen;
+			color: white;
+			border: 3px solid white;
+		}
+	input {
+		background-color: #191919;
+		color: white;
+		border: 2px solid green;
+	}
+
+		input:hover {
+			border: 2px solid lightgreen;
+		}
+	.buttonselected {
+		background-color: green;
+		color: white;
+		border: 3px solid lightgreen;
+	}
+		.buttonselected:hover {
+			background-color: green;
+			color: white;
+			border: 3px solid white;
+		}
+</style>
+<title>Forts Pivot Calculator</title>
+<link rel="stylesheet" href="../dark_green.css">
+<html>
+<body style="background-color:#252525;">
+	<p>Pivot adjusts the point where the component rotates on its parent component. (You would use the image size and pixel coordinate for the parent sprite)</p>
+	<p>PivotOffset adjusts the point where the component rotates on itself. (You would use the image size and pixel coordinate for the component's own sprite)</p>
+	<p>Hardpoint 0 (Where the projectile shoots from) is centered on the edge of parent sprite instead of the center.</p>
+  	<input type="radio" id="radioPivot" name="radiocalctype" value="PIVOT" onclick="radioVal('PIVOT')">
+  	<label for="radioPivot">Pivot</label><br>
+  	<input type="radio" id="radioPivotOffset" name="radiocalctype" value="PIVOTOFFSET" onclick="radioVal('PIVOTOFFSET')">
+  	<label for="radioPivotOffset">PivotOffset</label><br>
+
+	<button id="isHardpointBtn" type="button" class="button" onclick="isHardpoint()" style="font-size: 16px">Hardpoint 0</button> <br>
+
+	<p>Image size in pixels:</p>
+	<input id="sizeWinput" type="number" placeholder="'width'"/>
+	<input id="sizeHinput" type="number" placeholder="'height'"/>
+	<br>
+
+	<p>Pixel coordinate for point to rotate on:</p>
+	<input id="coordWinput" type="number" placeholder="'Pixel X'"/>
+	<input id="coordHinput" type="number" placeholder="'Pixel Y'"/>
+	<br><br>
+	<button id="submitBtn" type="button" class="button" onclick="Main()" style="font-size: 18px">Calculate pivot point</button>
+	<p>Output:</p>
+	<p id="output"></p>
+</body>
+<script>
+	//init
+	var pivotType = "";
+	var hardpoint0 = false;
+	function radioVal(value)
+	{
+		pivotType = value;
+	}
+	function isHardpoint()
+	{
+		hardpoint0 = !hardpoint0;
+		if (hardpoint0 == true)
+		{
+			document.getElementById("isHardpointBtn").className = "button buttonselected";
+		}
+		else
+		{
+			document.getElementById("isHardpointBtn").className = "button";
+		}
+	}
+	//main
+	function Main()
+	{
+		var size = [document.getElementById("sizeWinput").value, document.getElementById("sizeHinput").value];
+		var coord = [document.getElementById("coordWinput").value, document.getElementById("coordHinput").value];
+		//first check if the user actually entered everything.
+		if (pivotType == "" || size[0] == "" || size[1] == "" || coord[0] == "" || coord[1] == "")
+		{
+			document.getElementById("output").innerHTML = "Error: Incomplete entries";
+		} 
+		else
+		{
+			//start calculations
+			var outputPivot = [0,0];
+			outputPivot[0] = (coord[0]-(size[0]/2))/size[0]; //width
+			outputPivot[1] = (coord[1]-(size[1]/2))/size[1]; //height
+			//start output
+			var output = "Pivot";
+			if (pivotType == "PIVOTOFFSET")
+			{
+				output += "Offset";
+				outputPivot[0] *= -1;
+				outputPivot[1] *= -1;
+			}
+			if (hardpoint0)
+			{ 
+				outputPivot[0] -= 0.5;
+			}
+			output += " = {" + outputPivot[0] + ", " + outputPivot[1] + "}";
+			document.getElementById("output").innerHTML = output;
+		}
+	}
+</script>
+</html>
