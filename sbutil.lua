@@ -10,7 +10,9 @@ function AddCompGroups(weapons)
 				weapon.CompatibleGroupTypes = {}
 			end
 			for k, vv in pairs(weapons) do
-				table.insert(weapon.CompatibleGroupTypes, 1, vv)
+				if FindWeapon(vv) then
+					table.insert(weapon.CompatibleGroupTypes, 1, vv)
+				end
 			end
 		end
 	end
