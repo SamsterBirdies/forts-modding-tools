@@ -56,13 +56,11 @@
 <body style="background-color:#252525;">
 	<p>Pivot adjusts the point where the component rotates on its parent component. (You would use the image size and pixel coordinate for the parent sprite)</p>
 	<p>PivotOffset adjusts the point where the component rotates on itself. (You would use the image size and pixel coordinate for the component's own sprite)</p>
-	<p>Hardpoint 0 (Where the projectile shoots from) is centered on the edge of parent sprite instead of the center.</p>
+	<p>Component "Hardpoint0" marks the start of the barrel. The weapon has a BarrelLength property that defines the length in units from hardpoint0 where the projectile will spawn. Each unit is ~2.6674 pixels</p>
   	<input type="radio" id="radioPivot" name="radiocalctype" value="PIVOT" onclick="radioVal('PIVOT')">
   	<label for="radioPivot">Pivot</label><br>
   	<input type="radio" id="radioPivotOffset" name="radiocalctype" value="PIVOTOFFSET" onclick="radioVal('PIVOTOFFSET')">
   	<label for="radioPivotOffset">PivotOffset</label><br>
-
-	<button id="isHardpointBtn" type="button" class="button" onclick="isHardpoint()" style="font-size: 16px">Hardpoint 0</button> <br>
 
 	<p>Image size in pixels:</p>
 	<input id="sizeWinput" type="number" placeholder="'width'"/>
@@ -80,22 +78,9 @@
 <script>
 	//init
 	var pivotType = "";
-	var hardpoint0 = false;
 	function radioVal(value)
 	{
 		pivotType = value;
-	}
-	function isHardpoint()
-	{
-		hardpoint0 = !hardpoint0;
-		if (hardpoint0 == true)
-		{
-			document.getElementById("isHardpointBtn").className = "button buttonselected";
-		}
-		else
-		{
-			document.getElementById("isHardpointBtn").className = "button";
-		}
 	}
 	//main
 	function Main()
@@ -120,10 +105,6 @@
 				output += "Offset";
 				outputPivot[0] *= -1;
 				outputPivot[1] *= -1;
-			}
-			if (hardpoint0)
-			{ 
-				outputPivot[0] -= 0.5;
 			}
 			output += " = {" + outputPivot[0] + ", " + outputPivot[1] + "}";
 			document.getElementById("output").innerHTML = output;

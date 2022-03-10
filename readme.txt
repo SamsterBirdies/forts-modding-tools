@@ -1,3 +1,4 @@
+This is a collection of tools I use for modding the game "Forts"
 All contents are free to use, modify, and redistribute.
 
 sbutil.lua This script can be used with dofile(). Contains:
@@ -46,6 +47,16 @@ Tools:
 		This script will take those old HUD icons and convert them to the new ones.
 		Script must be run in the same folder as the icons.
 		Please make a backup of your icons before running this. There is a chance of error.
+		
+	log_device_extract.py
+		when using endos dump mod for weapons and devices, 
+		this tool will split the single log into seperate neat and tidy files.
+		
+	make_HUD_icon.py
+		This tool will automatically create A, D, R, S textures for HUD sprites.
+		An 'example.png' is included
+		This script requires PIL (can be installed by running: python -m pip install pillow)
+		
 	
 	mod_starter.py
 		This script will save time by creating the basic files needed for starting a new mod.
