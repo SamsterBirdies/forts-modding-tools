@@ -58,11 +58,13 @@ Tools:
 	log_device_extract.py
 		when using endos dump mod for weapons and devices, 
 		this tool will split the single log into seperate neat and tidy files.
+		Script must be run in the log folder.
 		
 	make_HUD_icon.py
 		This tool will automatically create A, D, R, S textures for HUD sprites.
-		An 'example.png' is included
-		This script requires PIL (can be installed by running: python -m pip install pillow)
+		An 'example.png' is included.
+		Script should be run in or near the same folder as the input image.
+		This script requires PIL (can be installed by running: python -m pip install pillow).
 		
 	
 	mod_starter.py
