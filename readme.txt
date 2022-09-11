@@ -30,7 +30,14 @@ Tools:
 		you need to have a copy of both local and workshop folders containing the change. 
 		This script will sync the local folders to the workshop folders.
 		Script must be run in Forts/data/mods.
-		
+	
+	diffLocalvsWorkshop.py
+		Will use diff to compare a local mod folder vs a workshop mod folder.
+		Useful for keeping track of changes before updating a mod.
+		Only works in linux terminal, or terminals with 'diff' command.
+		Must manually edit 'local_folder' and 'workshop_folder' variables to correct location.
+		Script can be run from any location.
+	
 	duplicateStructure.py
 		Using LoadStructureFile in a map multiple times causes bugs because of duplicate device ID's.
 		Step one: make the starting ID in the map a high number like 20000. (you can use this tool for that)
